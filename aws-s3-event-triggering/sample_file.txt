@@ -1,0 +1,1 @@
+This is demo project displaying s3 event triggering using lambda function
