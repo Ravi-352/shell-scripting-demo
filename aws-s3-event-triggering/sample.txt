@@ -1,1 +1,0 @@
-This is fot testing s3-even trigger by invoking lambda
