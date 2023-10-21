@@ -16,8 +16,8 @@ role_name="s3-lambda-sns"
 email_address="sriravikiran.akella@gmail.com"
 
 # Create IAM Role for the project
-role_response=$(aws iam create-role --role-name s3-lambda-sns --assume-role-policy-document '{
-  "Version": "2023-10-17",
+role_response=$(aws iam create-role --role-name s3-lambda-sns --assume-role-policy-document --region "$aws_region" '{
+  "Version": "2012-10-17",
   "Statement": [{
 	"Action": "sts:AssumeRole",
   	"Effect": "Allow",
@@ -39,12 +39,12 @@ role_arn=$(echo "$role_response" | jq -r '.Role.Arn')
 echo "Role ARN: $role_arn"
 
 # Attach Permissions to the Role
-aws iam attach-role-policy --role-name $role_name --policy-arn arn:aws:iam::aws:policy/AWSLambda_FullAccess
-aws iam attach-role-policy --role-name $role_name --policy-arn arn:aws:iam::aws:policy/AmazonSNSFullAccess
+aws iam attach-role-policy --role-name $role_name --policy-arn arn:aws:iam::aws:policy/AWSLambda_FullAccess --region "$aws_region"
+aws iam attach-role-policy --role-name $role_name --policy-arn arn:aws:iam::aws:policy/AmazonSNSFullAccess --region "$aws_region"
 
 
 # Create the S3 bucket and capture the output in a variable
-bucket_output=$(aws s3api create-bucket --bucket "$bucket_name" --region "$aws_region")
+bucket_output=$(aws s3api create-bucket --bucket "$bucket_name" --region "$aws_region" --create-bucket-configuration LocationConstraint="$aws_region")
 
 # Print the output from the variable
 echo "Bucket creation output: $bucket_output"
@@ -70,6 +70,7 @@ aws lambda create-function \
 
 # Add Permissions to S3 Bucket to invoke Lambda
 aws lambda add-permission \
+  --region "$aws_region" \
   --function-name "$lambda_func_name" \
   --statement-id "s3-lambda-sns" \
   --action "lambda:InvokeFunction" \
@@ -90,7 +91,7 @@ aws s3api put-bucket-notification-configuration \
 
 
 # Create an SNS topic and save the topic ARN to a variable
-topic_arn=$(aws sns create-topic --name s3-lambda-sns --output json | jq -r '.TopicArn')
+topic_arn=$(aws sns create-topic --name s3-lambda-sns --region $aws_region --output json | jq -r '.TopicArn')
 
 # Print the TopicArn
 echo "SNS Topic ARN: $topic_arn"

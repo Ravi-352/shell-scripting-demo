@@ -17,19 +17,21 @@ def lambda_handler(event, context):
     # Send a notification via SNS
 
     try:
-    	sns_client = boto3.client('sns')
-	topic_arn = 'arn:aws:sns:ap-south-1:582443060641:s3-lambda-sns'
-	sns_client.publish(
-		TopicArn=topic_arn,
-		Subject='S3 Object Created',
-		Message=f"File '{object_key}' was uploaded to bucket '{bucket_name}'"
-	)
+        sns = boto3.client('sns')
+        topic_arn = 'arn:aws:sns:ap-south-1:582443060641:s3-lambda-sns'
+        sns.publish(
+            TopicArn=topic_arn,
+            Subject='S3 Object Created',
+            Message='File ' +  object_key + ' was uploaded to bucket ' + bucket_name
+            )
+
     except Exception as e:
+
         print(e)
-	print('Error getting object_key{} from bucket_name{}. Make sure they exist and your bucket is in the same region as this function.'.format(object_key, bucket_name))
-	raise e
+        print('Error getting object_key{} from bucket_name{}. Make sure they exist and your bucket is in the same region as this function.'.format(object_key, bucket_name))
+        raise e
 									              
     return {
         'statusCode': 200,
-	        'body': json.dumps('Lambda function executed successfully')
+            'body': json.dumps('Lambda function executed successfully')
 	    }
