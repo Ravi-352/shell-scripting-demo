@@ -1,16 +1,16 @@
-OBJECTIVE: 
+OBJECTIVE: \n
 Automate the Notification service (SNS) to Subscribers upon updating new content in Cloud (AWS S3 storage bucket)
 
-PREREQUISITES:
-Up-to-date linux terminal with aws-cli configured: For documentation refer - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
-Install 'jq' and 'zip' packages in the terminal.
-Stable Internet connection.
+PREREQUISITES: \n
+Up-to-date linux terminal with aws-cli configured: For documentation refer - "https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html"\n
+Install 'jq' and 'zip' packages in the terminal. \n
+Stable Internet connection. \n
 
 
 REQUIREMENTS THAT THE SCRIPT TAKES CARE OF:
-AWS S3 bucket
-AWS SNS topic
-AWS Lambda function which gets invoked by s3 service whenever there is an upload in s3 bucket and inturn invokes SNS topic to publish message to subscribers
+AWS S3 bucket \n
+AWS SNS topic \n
+AWS Lambda function which gets invoked by s3 service whenever there is an upload in s3 bucket and inturn invokes SNS topic to publish message to subscribers \n
 
 
 Steps:
