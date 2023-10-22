@@ -2,6 +2,12 @@
 
 set -x
 
+#########
+# Author: ravi_kiran
+# Version: 1
+# Date: 10th Oct 2023
+#########
+
 # Store the AWS account ID in a variable
 aws_account_id=$(aws sts get-caller-identity --query 'Account' --output text)
 
@@ -10,7 +16,7 @@ echo "AWS Account ID: $aws_account_id"
 
 # Set AWS region and bucket name
 aws_region="ap-south-1"
-bucket_name="ravi-kiran-bucket"
+bucket_name="<s3-bucket-name>"
 lambda_func_name="s3-lambda-function"
 role_name="s3-lambda-sns"
 email_address="<user-email-id>"
