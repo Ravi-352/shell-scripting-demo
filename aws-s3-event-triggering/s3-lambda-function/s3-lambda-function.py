@@ -18,7 +18,7 @@ def lambda_handler(event, context):
 
     try:
         sns = boto3.client('sns')
-        topic_arn = 'arn:aws:sns:ap-south-1:582443060641:s3-lambda-sns'
+        topic_arn = 'arn:aws:sns:ap-south-1:<AWS account-id>:s3-lambda-sns'
         sns.publish(
             TopicArn=topic_arn,
             Subject='S3 Object Created',
