@@ -1,7 +1,7 @@
 OBJECTIVE: \n
 Automate the Notification service (SNS) to Subscribers upon updating new content in Cloud (AWS S3 storage bucket)
 
-PREREQUISITES: \n
+PREREQUISITES: "\n"
 Up-to-date linux terminal with aws-cli configured: For documentation refer - "https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html"\n
 Install 'jq' and 'zip' packages in the terminal. \n
 Stable Internet connection. \n
