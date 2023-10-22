@@ -10,18 +10,18 @@ PREREQUISITES:
 
 
 REQUIREMENTS THAT THE SCRIPT TAKES CARE OF:
-1. AWS S3 bucket \n
-2. AWS SNS topic \n
-3. AWS Lambda function which gets invoked by s3 service whenever there is an upload in s3 bucket and inturn invokes SNS topic to publish message to subscribers \n
+1. AWS S3 bucket  
+2. AWS SNS topic  
+3. AWS Lambda function which gets invoked by s3 service whenever there is an upload in s3 bucket and inturn invokes SNS topic to publish message to subscribers  
 
 
 Steps:
 1. Clone/Fork the Repository
 Command: git clone https://github.com/Ravi-352/shell-scripting-demo.git
-2. In Linux Terminal, go to "aws-s3-event-triggering" folder
-  a. S3-lambda-function.py (lambda function definition/code) inside the directory s3-lambda-function
-  b. s3-notification-triggering.sh
-  c. sample_file.txt to test "sns publish"
+2. In Linux Terminal, go to "aws-s3-event-triggering" folder  
+  a. S3-lambda-function.py (lambda function definition/code) inside the directory s3-lambda-function  
+  b. s3-notification-triggering.sh  
+  c. sample_file.txt to test "sns publish"  
 
 Steps involed in "s3-notification-triggering"
   a. Creating an iam role with AWSLambda and AWSSNS full access
